@@ -9,9 +9,20 @@ nei <- data.table(NEI)
 
 # sum and subset emissions by SCC (subject) and year
 gdt <- nei[, sum(Emissions), by = "year,fips,type"]
+
+# select Baltimore City
 gdt <- gdt[(fips == "24510")]
+
+# transform variables in factors
+gdt$year <- factor(gdt$year)
+gdt$type <- factor(gdt$type)
 
 # plot the graph
 png("plot3.png", width=800, height=600)
-qplot(year, V1, data = gdt, geom = c("line"), color = type, ylab="Total Amount of PM2.5 Emissions (in tons) ", xlab="Year", main="Total Emission of PM2.5 in Baltimore City by Year and Type (1999 - 2008)")
+
+g <- ggplot(aes(year, V1), data = gdt) + geom_bar(stat = "identity", width = .5) + facet_wrap(~ type) 
+g <- g + labs(title = "Total Emission of PM2.5 in Baltimore City by Year (1999 - 2008)")
+g <- g + labs(x = "Year", y = "Total Amount of PM2.5 Emissions (in tons)")
+print(g)
+
 dev.off()
