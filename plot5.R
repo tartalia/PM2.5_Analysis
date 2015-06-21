@@ -23,7 +23,8 @@ gdt <- nei[, sum(Emissions), by = "year,fips"]
 gdt <- gdt[(fips == "24510")]
 
 # plot the graph with a linear regression line
-png("plot5.png", width=600, height=600)
+png("plot5.png", width=800, height=600)
 qplot(year, V1, data = gdt, geom = "line", ylab="Total Amount of PM2.5 Emissions (in tons) ", xlab="Year", 
       main="Total Emission of PM2.5 Related to Motor Vehicle in Baltimore City by Year (1999 - 2008)") + geom_smooth(size = 2, linetype = 3, method = "lm", se = FALSE)
 dev.off()
+

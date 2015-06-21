@@ -28,7 +28,7 @@ nei <- nei[(SCC %in% scc),]
 gdt <- nei[, sum(Emissions), by = "year"]
 
 # plot the graph with a linear regression line
-png("plot4.png", width=600, height=600)
+png("plot4.png", width=800, height=600)
 qplot(year, V1, data = gdt, geom = "line", ylab="Total Amount of PM2.5 Emissions (in tons) ", xlab="Year", 
       main="Total Emission of PM2.5 Related to Coal Combustion in US by Year (1999 - 2008)") + geom_smooth(size = 2, linetype = 3, method = "lm", se = FALSE)
 dev.off()
