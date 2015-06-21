@@ -9,8 +9,8 @@ nei <- data.table(NEI)
 # sum Emissions by SCC (subject) and year
 gdt <- nei[, sum(Emissions), by = "year,fips"]
 gdt <- gdt[(fips == "24510")]
-png("plot2.png")
 
+png("plot2.png")
 # supress cientific notation on y label
 options(scipen=5)
 
