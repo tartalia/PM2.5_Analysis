@@ -18,6 +18,8 @@ nei <- nei[(SCC %in% scc),]
 
 # sum emission grouped by year
 gdt <- nei[, sum(Emissions), by = "year,fips"]
+
+# select Baltimore City
 gdt <- gdt[(fips == "24510")]
 
 # plot the graph with a linear regression line
