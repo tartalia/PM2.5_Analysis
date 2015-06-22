@@ -29,7 +29,8 @@ gdt$fips <- factor(gdt$fips, labels = c("Los Angeles County", "Baltimore City"))
 
 # plot the graph
 png("plot6.png", width=800, height=600)
-g <- ggplot(aes(year, V1), data = gdt) + geom_bar(stat = "identity", width = .5) + facet_wrap(~ fips) 
+g <- ggplot(aes(year, V1, group = 1), data = gdt) + geom_bar(stat = "identity", width = .2) 
+g <- g + facet_wrap(~ fips) + geom_smooth(method="lm", se=FALSE, col="steelblue") 
 g <- g + labs(title = "Total Emission of PM2.5 Related to Motor Vehicle by Year (1999 - 2008))")
 g <- g + labs(x = "Year", y = "Total Amount of PM2.5 Emissions (in tons)")
 print(g)
